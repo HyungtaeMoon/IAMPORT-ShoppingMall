@@ -4,8 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==1.*"
 pillow = "*"
+django = "==1.11"
+notebook = "*"
+"beautifulsoup4" = "*"
+requests = "*"
 
 [dev-packages]
 
