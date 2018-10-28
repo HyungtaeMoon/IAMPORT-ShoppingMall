@@ -1,4 +1,5 @@
 {% extends "shop/layout.html" %}
+{% load humanize %}
 
 {% block content %}
     <div class="container">
@@ -12,9 +13,7 @@
 
                     <div class="card-body">
                         <p class="card-text">{{ item.name }}</p>
-                        {% if item.desc %}
-                        <p class="card-text">{{ item.desc }}</p>
-                        {% endif %}
+                        <p class="card-text">{{ item.amount|intcomma }}원</p>
                     </div>
 
                     <a href="" class="btn btn-primary btn-block">구매하기</a>
