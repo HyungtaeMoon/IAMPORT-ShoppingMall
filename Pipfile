@@ -9,6 +9,7 @@ django = "==1.11"
 notebook = "*"
 "beautifulsoup4" = "*"
 requests = "*"
+lxml = "*"
 
 [dev-packages]
 
