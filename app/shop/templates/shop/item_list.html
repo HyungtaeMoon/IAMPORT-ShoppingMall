@@ -16,7 +16,7 @@
                         <p class="card-text">{{ item.amount|intcomma }}원</p>
                     </div>
 
-                    <a href="" class="btn btn-primary btn-block">구매하기</a>
+                    <a href="{% url 'shop:order_new' item.pk %}" class="btn btn-primary btn-block">구매하기</a>
 
                 </div>
             </div>
