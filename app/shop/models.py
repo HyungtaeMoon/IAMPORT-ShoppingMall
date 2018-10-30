@@ -2,6 +2,7 @@ from uuid import uuid4
 
 from django.conf import settings
 from django.db import models
+from iamport import Iamport
 
 
 class Item(models.Model):
@@ -37,3 +38,15 @@ class Order(models.Model):
     class Meta:
         # ordering = ['-id']
         ordering = ('-id',)
+
+    @property
+    def api(self):
+        return Iamport(settings.IAMPORT_API_KEY, settings.IAMPORT_API_SECRET)
+
+    def update(self, commit=True, meta=None):
+        if self.imp_uid:
+            self.meta = meta or self.api.find(imp_uid=self.imp_uid)
+            # merchant_uid 는 반드시 매칭
+            assert str(self.merchant_uid) == self.meta['merchant_uid']
+        if commit:
+            self.save()
