@@ -10,6 +10,8 @@ notebook = "*"
 "beautifulsoup4" = "*"
 requests = "*"
 lxml = "*"
+iamport-rest-client = "*"
+jsonfield = "*"
 
 [dev-packages]
 
