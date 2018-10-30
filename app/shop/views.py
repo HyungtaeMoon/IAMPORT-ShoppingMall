@@ -43,4 +43,5 @@ def order_new(request, item_id):
 
     return render(request, 'shop/order_form.html', {
         'form': form,
+        'iamport_shop_id': 'iamport',   # 가맹점 식별 코드
     })
