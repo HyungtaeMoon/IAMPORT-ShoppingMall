@@ -5,6 +5,7 @@ import pytz
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.db import models
+from django.http import Http404
 from django.utils.safestring import mark_safe
 from iamport import Iamport
 from jsonfield import JSONField
@@ -132,7 +133,10 @@ class Order(models.Model):
 
     def update(self, commit=True, meta=None):
         if self.imp_uid:
-            self.meta = meta or self.api.find(imp_uid=self.imp_uid)
+            try:
+                self.meta = meta or self.api.find(imp_uid=self.imp_uid)
+            except Iamport.HttpError:
+                raise Http404('Not found {}'.format(self.imp_uid))
             # merchant_uid 는 반드시 매칭
             assert str(self.merchant_uid) == self.meta['merchant_uid']
         if commit:
