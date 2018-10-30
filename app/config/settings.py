@@ -1,15 +1,25 @@
+import json
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR(app)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# ROOT_DIR
+ROOT_DIR = os.path.join(BASE_DIR)
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3+@i312@2r4!ea2s=og_0-lld0@vaa8i6_!c(nto8sje=g#a&='
+SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
+secrets = json.load(open(os.path.join(SECRETS_DIR, 'base.json')))
+
+# django secret key
+SECRET_KEY = secrets['SECRET_KEY']
+
+# IAMPORT
+IAMPORT_SHOP_ID = secrets['IAMPORT_SHOP_ID']
+IAMPORT_API_KEY = secrets['IAMPORT_API_KEY']
+IAMPORT_API_SECRET_KEY = secrets['IAMPORT_API_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
