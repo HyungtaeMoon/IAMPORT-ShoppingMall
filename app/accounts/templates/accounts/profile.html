@@ -14,6 +14,9 @@
                         <tr>
                             <th>상품명</th>
                             <th>결제가격</th>
+                            <th>처리결과</th>
+                            <th>결과일시</th>
+                            <th>영수증</th>
                         </tr>
                     </thead>
 
@@ -21,7 +24,10 @@
                     {% for order in order_list %}
                     <tr>
                         <td>{{ order.name }}</td>
-                        <td class="text-right">{{ order.amount|intcomma }}원</td>
+                        <td>{{ order.amount_html }}</td>
+                        <td>{{ order.status_html }}</td>
+                        <td>{{ order.paid_at|default:"-" }}</td>
+                        <td>{{ order.receipt_link|default:"-" }}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
