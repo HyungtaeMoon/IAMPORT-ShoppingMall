@@ -88,7 +88,7 @@ class Order(models.Model):
 
     @property
     def api(self):
-        return Iamport(settings.IAMPORT_API_KEY, settings.IAMPORT_API_SECRET)
+        return Iamport(settings.IAMPORT_API_KEY, settings.IAMPORT_API_SECRET_KEY)
 
     @named_property('결제금액')
     def amount_html(self):
