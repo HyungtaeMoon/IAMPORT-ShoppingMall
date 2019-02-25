@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
                 <table>
-                {{ form.as_table }}
+                    {{ form.as_table }}
                 </table>
             </div>
             <div class="card-footer">
@@ -24,31 +24,31 @@
 {% endblock %}
 
 {% block extra_body %}
-    <script src="//service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-    <script>
-        $(function () {
-            var $form = $('#order-form');
-            var params = {
-                merchant_uid: str(self.instance.merchant_uid),
-                name: $form.find('[name=name]').val(),
-                amount: $form.find('[name=amount]').val(),
-            };
+<script src="//service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script>
+    $(function () {
+        var $form = $('#order-form');
+        var params = {
+            merchant_uid: str(self.instance.merchant_uid),
+            name: $form.find('[name=name]').val(),
+            amount: $form.find('[name=amount]').val(),
+        };
 
-            IMP.init('{{ iamport_shop_id }}');
-            IMP.request_pay(params, function (response_data) {
-                console.log('response_data :', response_data);
+        IMP.init('{{ iamport_shop_id }}');
+        IMP.request_pay(params, function (response_data) {
+            console.log('response_data :', response_data);
 
-                if ( ! response_data.success ) {
-                    alert(response_data.error_msg + "(" + response_data.error_code + ")");
-                    location.href = "{% url 'shop:index' %}";
-                }
-                else {
-                    $.each(response_data, function (key, value) {
-                        $form.find('input[name=' + key + ']').val(value);
-                    });
-                    $form.submit();
-                }
-            });
+            if ( ! response_data.success ) {
+                alert(response_data.error_msg + "(" + response_data.error_code + ")");
+                location.href = "{% url 'shop:index' %}";
+            }
+            else {
+                $.each(response_data, function (key, value) {
+                    $form.find('input[name=' + key + ']').val(value);
+                });
+                $form.submit();
+            }
         });
-    </script>
+    });
+</script>
 {% endblock %}

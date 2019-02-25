@@ -10,9 +10,9 @@
             }
             var $form = $("#iamport-script").closest("form");
             $.each(response_data, function(key, value) {
-               $form.find("input[name=" + key + "]").val(value);
+                $form.find("input[name=" + key + "]").val(value);
             });
             $form.submit();
-       });
+        });
     });
 </script>
