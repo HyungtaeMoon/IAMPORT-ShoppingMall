@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 pillow = "*"
-django = "==1.11"
+django = "==1.11.23"
 notebook = "*"
 "beautifulsoup4" = "*"
 requests = "*"
